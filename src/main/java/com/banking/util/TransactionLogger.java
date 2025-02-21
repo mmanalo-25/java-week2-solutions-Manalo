@@ -2,10 +2,8 @@ package com.banking.util;
 
 import com.banking.db.AccountDAO;
 import com.banking.db.AccountDAOImpl;
-
 import java.io.*;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,30 +23,14 @@ public class TransactionLogger {
     public void saveTransaction(int accountID, String accountNumber, BigDecimal amount, BigDecimal balance) throws SQLException {
         AccountDAO accountDAO = new AccountDAOImpl();
         accountDAO.saveTransaction(accountID, accountNumber, amount, balance);
-//        try {
-//
-//            // Create a transaction record in the required format
-//            String transaction = String.format("%s,%s,%.2f%n",
-//                LocalDateTime.now(),  // timestamp
-//                accountNumber,        // account number
-//                amount);             // amount
-//
-//            // Open the file and add the transaction at the end
-//            FileWriter writer = new FileWriter(TRANSACTIONS_FILE, true);
-//            writer.write(transaction);
-//            writer.close();
-//
-//        } catch (IOException e) {
-//            // If something goes wrong, just print an error
-//            System.out.println("Couldn't save transaction: " + e.getMessage());
-//        }
+
     }
 
-    public void getTransactionByAccountNumber(String accountNumber) throws SQLException {
+    public void getTransactionByAccountNumber(String accountNumber) {
         AccountDAO accountDAO = new AccountDAOImpl();
         accountDAO.getTransactionByAccountNumber(accountNumber);
     }
-    public void getTransactionOrderByAccountNumber() throws SQLException {
+    public void getTransactionOrderByAccountNumber() {
         AccountDAO accountDAO = new AccountDAOImpl();
         accountDAO.getTransactionOrderByAccountNumber();
     }
@@ -127,10 +109,10 @@ public class TransactionLogger {
 //    *
 //     * Clear all saved transactions
 //
-    public void clearTransactions() {
-        File file = new File(TRANSACTIONS_FILE);
-        if (file.exists()) {
-            file.delete();
-        }
-    }
+//    public void clearTransactions() {
+//        File file = new File(TRANSACTIONS_FILE);
+//        if (file.exists()) {
+//            file.delete();
+//        }
+//    }
 }
