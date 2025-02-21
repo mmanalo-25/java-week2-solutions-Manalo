@@ -1,8 +1,6 @@
 package com.banking.service;
 
 import com.banking.BankingSystem;
-import com.banking.db.AccountDAO;
-import com.banking.db.AccountDAOImpl;
 import com.banking.model.Account;
 import com.banking.model.AccountFactory;
 import com.banking.model.AccountType;
@@ -42,7 +40,7 @@ public class AccountService {
         }
 
         // Create the account
-        Account account = AccountFactory.createAccount(accountID,type, accountNumber, initialBalance);
+        Account account = AccountFactory.createAccount(accountID, type, accountNumber, initialBalance);
 
         // Save it in the banking system
         bankingSystem.addAccount(account);
@@ -88,8 +86,6 @@ public class AccountService {
         // Take out the money
         account.withdraw(amount);
 
-//        // Save the transaction (negative amount for withdrawal)
-//        logger.saveTransaction(accountId, amount.negate(), account.getBalance());
     }
 
     /**
@@ -112,9 +108,6 @@ public class AccountService {
         // Add money to second account
         toAccount.deposit(amount);
 
-        // Save both transactions
-//        logger.saveTransaction(fromAccountId, amount.negate(), fromAccount.getBalance());
-//        logger.saveTransaction(toAccountId, amount, toAccount.getBalance());
     }
 
     /**
@@ -153,27 +146,26 @@ public class AccountService {
     }
 
     public void getTransactionByAccountNumber(String accountNumber) throws SQLException {
-        Account account = findAccount(accountNumber);
-
+        findAccount(accountNumber);
         logger.getTransactionByAccountNumber(accountNumber);
 
     }
-    public void getTransactionOrderByAccountNumber() throws SQLException {
+
+    public void getTransactionOrderByAccountNumber() {
         logger.getTransactionOrderByAccountNumber();
 
     }
 
     public int getNextAccountID() throws SQLException {
-      return   bankingSystem.getNextAccountID();
+        return bankingSystem.getNextAccountID();
 
     }
 
-    public void processMonthlyFees(){
+    public void processMonthlyFees() {
         bankingSystem.processMonthlyFees();
     }
 
-    public void getAccountsSortedByBalance()
-    {
+    public void getAccountsSortedByBalance() {
         bankingSystem.getAccountsSortedByBalance();
     }
 }

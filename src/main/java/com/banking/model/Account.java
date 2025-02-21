@@ -2,7 +2,6 @@ package com.banking.model;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 
 import com.banking.db.AccountDAO;
 import com.banking.db.AccountDAOImpl;
@@ -14,7 +13,7 @@ public abstract class Account {
     private final int accountID;
     private final String accountNumber;
     private BigDecimal balance;
-    private AccountType accountType;
+    private final AccountType accountType;
     // Protected field - accessible by subclasses
 
 
